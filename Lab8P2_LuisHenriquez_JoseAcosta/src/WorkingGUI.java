@@ -38,7 +38,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         pf_passwordRegister = new javax.swing.JPasswordField();
         rb_participante = new javax.swing.JRadioButton();
         rb_administrador = new javax.swing.JRadioButton();
-        jButton3 = new javax.swing.JButton();
+        bt_registrarUsusario = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jd_admin = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
@@ -67,7 +67,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        bt_unirseTorneo = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         list_torneosParticipante = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -79,8 +79,8 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tf_Username = new javax.swing.JTextField();
         pf_password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bt_toRegister = new javax.swing.JButton();
+        bt_iniciarSesion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -116,24 +116,26 @@ public class WorkingGUI extends javax.swing.JFrame {
         pf_passwordRegister.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(pf_passwordRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 240, 40));
 
+        buttonGroup1.add(rb_participante);
         rb_participante.setForeground(new java.awt.Color(0, 0, 0));
         rb_participante.setText("Participante");
         jPanel1.add(rb_participante, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
 
+        buttonGroup1.add(rb_administrador);
         rb_administrador.setForeground(new java.awt.Color(0, 0, 0));
         rb_administrador.setText("Administrador");
         jPanel1.add(rb_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Crear");
-        jButton3.setBorder(null);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_registrarUsusario.setBackground(new java.awt.Color(255, 51, 51));
+        bt_registrarUsusario.setForeground(new java.awt.Color(255, 255, 255));
+        bt_registrarUsusario.setText("Crear");
+        bt_registrarUsusario.setBorder(null);
+        bt_registrarUsusario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                bt_registrarUsusarioMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 60, 30));
+        jPanel1.add(bt_registrarUsusario, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 60, 30));
 
         javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
         jd_registro.getContentPane().setLayout(jd_registroLayout);
@@ -145,6 +147,8 @@ public class WorkingGUI extends javax.swing.JFrame {
             jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jd_admin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,6 +170,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 460));
 
         bt_toCrearTorneo.setBackground(new java.awt.Color(0, 0, 255));
+        bt_toCrearTorneo.setForeground(new java.awt.Color(255, 255, 255));
         bt_toCrearTorneo.setText("Crear torneo");
         bt_toCrearTorneo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -219,6 +224,8 @@ public class WorkingGUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jd_crearTorneo.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -250,7 +257,13 @@ public class WorkingGUI extends javax.swing.JFrame {
         jPanel7.add(sp_rondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         bt_crearTorneo.setBackground(new java.awt.Color(0, 0, 255));
+        bt_crearTorneo.setForeground(new java.awt.Color(255, 255, 255));
         bt_crearTorneo.setText("Crear Torneo");
+        bt_crearTorneo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearTorneoMouseClicked(evt);
+            }
+        });
         jPanel7.add(bt_crearTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, -1, -1));
 
         javax.swing.GroupLayout jd_crearTorneoLayout = new javax.swing.GroupLayout(jd_crearTorneo.getContentPane());
@@ -267,6 +280,8 @@ public class WorkingGUI extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jd_participante.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -308,9 +323,9 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel12.setText("Torneos ganados");
         jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(255, 0, 0));
-        jButton4.setText("Unirse a torneo");
-        jPanel9.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+        bt_unirseTorneo.setBackground(new java.awt.Color(255, 0, 0));
+        bt_unirseTorneo.setText("Unirse a torneo");
+        jPanel9.add(bt_unirseTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
         list_torneosParticipante.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(list_torneosParticipante);
@@ -361,22 +376,27 @@ public class WorkingGUI extends javax.swing.JFrame {
         pf_password.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(pf_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 220, 50));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 204));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
-        jButton1.setBorder(null);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_toRegister.setBackground(new java.awt.Color(0, 0, 204));
+        bt_toRegister.setForeground(new java.awt.Color(255, 255, 255));
+        bt_toRegister.setText("Registrar");
+        bt_toRegister.setBorder(null);
+        bt_toRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                bt_toRegisterMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 70, 30));
+        jPanel2.add(bt_toRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 70, 30));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Iniciar sesión");
-        jButton2.setBorder(null);
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 450, 90, 30));
+        bt_iniciarSesion.setBackground(new java.awt.Color(255, 0, 0));
+        bt_iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        bt_iniciarSesion.setText("Iniciar sesión");
+        bt_iniciarSesion.setBorder(null);
+        bt_iniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_iniciarSesionMouseClicked(evt);
+            }
+        });
+        jPanel2.add(bt_iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 450, 90, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -392,7 +412,9 @@ public class WorkingGUI extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 530));
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/unitec color.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -412,12 +434,12 @@ public class WorkingGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void bt_toRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_toRegisterMouseClicked
         this.setVisible(false);
         jd_registro.pack();
         jd_registro.setLocationRelativeTo(null);
         jd_registro.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_bt_toRegisterMouseClicked
 
     private void bt_toCrearTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_toCrearTorneoMouseClicked
         this.dispose();
@@ -426,28 +448,65 @@ public class WorkingGUI extends javax.swing.JFrame {
         jd_crearTorneo.setVisible(true);
     }//GEN-LAST:event_bt_toCrearTorneoMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void bt_registrarUsusarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_registrarUsusarioMouseClicked
        
         if (rb_participante.isSelected()) {
             User nuevoUsuario = new Participante(tf_usernameRegister.getText(), pf_passwordRegister.getText());
-            administradorUser admin = new administradorUser("./admin.lj");
+            administradorUser admin = new administradorUser("./participante.lj");
             admin.cargarArchivo();
             admin.setUser(nuevoUsuario);
             admin.escribirArchivo();
-            JOptionPane.showMessageDialog(jd_registro, "Participante registrado exitosamente.");
             tf_usernameRegister.setText("");
-            pf_password.setText("");
+            pf_passwordRegister.setText("");
+            JOptionPane.showMessageDialog(jd_registro, "Participante registrado exitosamente.");
         } else if (rb_administrador.isSelected()) {
             User nuevoAdministrador = new Admin(tf_usernameRegister.getText(), pf_passwordRegister.getText());
             administradorUser admin = new administradorUser("./admin.lj");
             admin.cargarArchivo();
             admin.setUser(nuevoAdministrador);
             admin.escribirArchivo();
+            tf_usernameRegister.setText("");
+            pf_passwordRegister.setText("");
             JOptionPane.showMessageDialog(jd_registro, "Administrador registrado exitosamente.");
         }else{
             JOptionPane.showMessageDialog(jd_registro, "Elija si el usuario es participante o administrador. ");
         }
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_bt_registrarUsusarioMouseClicked
+
+    private void bt_crearTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearTorneoMouseClicked
+       Torneo nuevoTorneo = new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue());
+       adminTorneo admin = new adminTorneo("./torneos.jl");
+       admin.cargarArchivo();
+       admin.getTorneo().add(nuevoTorneo);
+       admin.escribirArchivo();
+       JOptionPane.showMessageDialog(jd_crearTorneo, "Torneo agregado exitosamente");
+       tf_nombreTorneo.setText("");
+       sp_rondas.setValue(0);
+       
+       DefaultListModel modelo = (DefaultListModel) list_torneosAdmin.getModel();
+       modelo.addElement(new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue()));
+       list_torneosAdmin.setModel(modelo);
+       
+       DefaultListModel modeloParticipantes = (DefaultListModel) list_torneosParticipante.getModel();
+       modeloParticipantes.addElement(new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue()));
+       list_torneosParticipante.setModel(modeloParticipantes);
+    }//GEN-LAST:event_bt_crearTorneoMouseClicked
+
+    private void bt_iniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_iniciarSesionMouseClicked
+        administradorUser admin = new administradorUser("./admin.lj");
+        admin.cargarArchivo();
+        for (Object users : admin.getUser()) {
+           if (tf_Username.getText().equals(((Admin) users).getNombre()) && pf_password.getText().equals(((Admin) users).getContraseña())) {
+                //aqui se hace el dispose y se despligue la ventana del admin.
+                this.setVisible(false);
+                jd_admin.pack();
+                jd_admin.setLocationRelativeTo(null);
+                jd_admin.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado ");
+            }
+        }
+    }//GEN-LAST:event_bt_iniciarSesionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -488,14 +547,14 @@ public class WorkingGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cerrarTorneo;
     private javax.swing.JButton bt_crearTorneo;
+    private javax.swing.JButton bt_iniciarSesion;
     private javax.swing.JButton bt_marcarGanador;
+    private javax.swing.JButton bt_registrarUsusario;
     private javax.swing.JButton bt_salir;
     private javax.swing.JButton bt_toCrearTorneo;
+    private javax.swing.JButton bt_toRegister;
+    private javax.swing.JButton bt_unirseTorneo;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
