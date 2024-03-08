@@ -43,6 +43,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jd_admin = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        bt_salirAdmin = new javax.swing.JButton();
         bt_toCrearTorneo = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -77,7 +78,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tf_Username = new javax.swing.JTextField();
+        tf_username = new javax.swing.JTextField();
         pf_password = new javax.swing.JPasswordField();
         bt_toRegister = new javax.swing.JButton();
         bt_iniciarSesion = new javax.swing.JButton();
@@ -156,15 +157,30 @@ public class WorkingGUI extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 0, 0));
 
+        bt_salirAdmin.setBackground(new java.awt.Color(0, 0, 255));
+        bt_salirAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        bt_salirAdmin.setText("Salir");
+        bt_salirAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_salirAdminMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(bt_salirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(406, Short.MAX_VALUE)
+                .addComponent(bt_salirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 460));
@@ -290,7 +306,13 @@ public class WorkingGUI extends javax.swing.JFrame {
 
         bt_salir.setBackground(new java.awt.Color(0, 0, 255));
         bt_salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bt_salir.setForeground(new java.awt.Color(255, 255, 255));
         bt_salir.setText("Salir");
+        bt_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_salirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -324,6 +346,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         bt_unirseTorneo.setBackground(new java.awt.Color(255, 0, 0));
+        bt_unirseTorneo.setForeground(new java.awt.Color(255, 255, 255));
         bt_unirseTorneo.setText("Unirse a torneo");
         jPanel9.add(bt_unirseTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
@@ -370,8 +393,8 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, -1));
 
-        tf_Username.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(tf_Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, 40));
+        tf_username.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, 40));
 
         pf_password.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(pf_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 220, 50));
@@ -442,7 +465,7 @@ public class WorkingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_toRegisterMouseClicked
 
     private void bt_toCrearTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_toCrearTorneoMouseClicked
-        this.dispose();
+        jd_admin.dispose();
         jd_crearTorneo.pack();
         jd_crearTorneo.setLocationRelativeTo(null);
         jd_crearTorneo.setVisible(true);
@@ -490,23 +513,62 @@ public class WorkingGUI extends javax.swing.JFrame {
        DefaultListModel modeloParticipantes = (DefaultListModel) list_torneosParticipante.getModel();
        modeloParticipantes.addElement(new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue()));
        list_torneosParticipante.setModel(modeloParticipantes);
+       
+       jd_crearTorneo.dispose();
+       jd_admin.pack();
+       jd_admin.setLocationRelativeTo(null);
+       jd_admin.setVisible(true);
     }//GEN-LAST:event_bt_crearTorneoMouseClicked
 
     private void bt_iniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_iniciarSesionMouseClicked
+        boolean encontrado = false;
+
         administradorUser admin = new administradorUser("./admin.lj");
         admin.cargarArchivo();
         for (Object users : admin.getUser()) {
-           if (tf_Username.getText().equals(((Admin) users).getNombre()) && pf_password.getText().equals(((Admin) users).getContraseña())) {
+            if (tf_username.getText().equals(((Admin) users).getNombre()) && pf_password.getText().equals(((Admin) users).getContraseña())) {
                 //aqui se hace el dispose y se despligue la ventana del admin.
                 this.setVisible(false);
                 jd_admin.pack();
                 jd_admin.setLocationRelativeTo(null);
                 jd_admin.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado ");
+                tf_username.setText("");
+                pf_password.setText("");
+                encontrado = true;
             }
         }
+
+        if (!encontrado) {
+            administradorUser adminUsers = new administradorUser("./participante.lj");
+            adminUsers.cargarArchivo();
+            for (Object users : adminUsers.getUser()) {
+                if (tf_username.getText().equals(((Participante) users).getNombre())
+                        && pf_password.getText().equals(((Participante) users).getContraseña())) {
+                    this.setVisible(false);
+                    jd_participante.pack();
+                    jd_participante.setLocationRelativeTo(null);
+                    jd_participante.setVisible(true);
+                    tf_username.setText("");
+                    pf_password.setText("");
+                    encontrado = true;
+                }
+            }
+        }
+        
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecto.");
+        }
     }//GEN-LAST:event_bt_iniciarSesionMouseClicked
+
+    private void bt_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_salirMouseClicked
+        jd_participante.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_bt_salirMouseClicked
+
+    private void bt_salirAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_salirAdminMouseClicked
+        jd_admin.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_bt_salirAdminMouseClicked
 
     /**
      * @param args the command line arguments
@@ -551,6 +613,7 @@ public class WorkingGUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_marcarGanador;
     private javax.swing.JButton bt_registrarUsusario;
     private javax.swing.JButton bt_salir;
+    private javax.swing.JButton bt_salirAdmin;
     private javax.swing.JButton bt_toCrearTorneo;
     private javax.swing.JButton bt_toRegister;
     private javax.swing.JButton bt_unirseTorneo;
@@ -596,8 +659,8 @@ public class WorkingGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_administrador;
     private javax.swing.JRadioButton rb_participante;
     private javax.swing.JSpinner sp_rondas;
-    private javax.swing.JTextField tf_Username;
     private javax.swing.JTextField tf_nombreTorneo;
+    private javax.swing.JTextField tf_username;
     private javax.swing.JTextField tf_usernameRegister;
     // End of variables declaration//GEN-END:variables
 }
