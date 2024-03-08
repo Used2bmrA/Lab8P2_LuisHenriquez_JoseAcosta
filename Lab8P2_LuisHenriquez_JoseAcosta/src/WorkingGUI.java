@@ -268,7 +268,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 50, 30));
         jPanel7.add(tf_nombreTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 180, -1));
 
-        sp_rondas.setModel(new javax.swing.SpinnerNumberModel());
+        sp_rondas.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jPanel7.add(sp_rondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         bt_crearTorneo.setBackground(new java.awt.Color(0, 0, 255));
@@ -589,15 +589,24 @@ public class WorkingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_salirAdminMouseClicked
 
     private void bt_cerrarTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cerrarTorneoMouseClicked
+        if (list_torneosAdmin.getSelectedIndex() >= 0) {
+            DefaultListModel listaActualizada = (DefaultListModel) list_torneosAdmin.getModel();
+            listaActualizada.remove(list_torneosAdmin.getSelectedIndex());
+            list_torneosAdmin.setModel(listaActualizada);
 
-        
+            DefaultListModel torneos = (DefaultListModel) list_torneosCerrados.getModel();
+            torneos.addElement(listaActualizada);
+            list_torneosCerrados.setModel(torneos);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un torneo para finalizarlo");
+        }
     }//GEN-LAST:event_bt_cerrarTorneoMouseClicked
 
     private void bt_unirseTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_unirseTorneoMouseClicked
        if(list_torneosAdmin.getSelectedIndex() >= 0){
            JOptionPane.showMessageDialog(jd_admin, "Ingresado correctamente");
        }else{
-           JOptionPane.showMessageDialog(jd_admin, evt);
+           JOptionPane.showMessageDialog(jd_admin, "No se pudo ingresar al torneo.");
        }
     }//GEN-LAST:event_bt_unirseTorneoMouseClicked
 
