@@ -110,20 +110,14 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 204));
         jLabel5.setText("Contraseña");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
-
-        tf_usernameRegister.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(tf_usernameRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 240, 40));
-
-        pf_passwordRegister.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(pf_passwordRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 240, 40));
 
         buttonGroup1.add(rb_participante);
-        rb_participante.setForeground(new java.awt.Color(0, 0, 0));
         rb_participante.setText("Participante");
         jPanel1.add(rb_participante, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
 
         buttonGroup1.add(rb_administrador);
-        rb_administrador.setForeground(new java.awt.Color(0, 0, 0));
         rb_administrador.setText("Administrador");
         jPanel1.add(rb_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
 
@@ -353,6 +347,11 @@ public class WorkingGUI extends javax.swing.JFrame {
         bt_unirseTorneo.setBackground(new java.awt.Color(255, 0, 0));
         bt_unirseTorneo.setForeground(new java.awt.Color(255, 255, 255));
         bt_unirseTorneo.setText("Unirse a torneo");
+        bt_unirseTorneo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_unirseTorneoMouseClicked(evt);
+            }
+        });
         jPanel9.add(bt_unirseTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
         list_torneosParticipante.setModel(new DefaultListModel());
@@ -397,11 +396,7 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Contraseña");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 60, -1));
-
-        tf_username.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, 40));
-
-        pf_password.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(pf_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 220, 50));
 
         bt_toRegister.setBackground(new java.awt.Color(0, 0, 204));
@@ -541,15 +536,25 @@ public class WorkingGUI extends javax.swing.JFrame {
                 tf_username.setText("");
                 pf_password.setText("");
                 encontrado = true;
+                
+                
+                DefaultListModel listas = (DefaultListModel) list_torneosAdmin.getModel();
+                   adminTorneo admin2 = new adminTorneo("./torneo.lj");
+                   for (Object admin4 : admin2.getTorneo()) {  
+                       listas.addElement(admin4);
+                       list_torneosAdmin.setModel(listas);
+                   }
             }
+            
         }
+        
 
         if (!encontrado) {
             administradorUser adminUsers = new administradorUser("./participante.lj");
             adminUsers.cargarArchivo();
             for (Object users : adminUsers.getUser()) {
                 if (tf_username.getText().equals(((Participante) users).getNombre())
-                        && pf_password.getText().equals(((Participante) users).getContraseña())) {
+                    && pf_password.getText().equals(((Participante) users).getContraseña())) {
                     this.setVisible(false);
                     jd_participante.pack();
                     jd_participante.setLocationRelativeTo(null);
@@ -558,6 +563,13 @@ public class WorkingGUI extends javax.swing.JFrame {
                     pf_password.setText("");
                     encontrado = true;
                 }
+                
+                DefaultListModel lista2 = (DefaultListModel) list_torneosParticipante.getModel();
+                       adminTorneo admin2 = new adminTorneo("./torneo.jl");
+                       for (Object admin1 : admin2.getTorneo()) {
+                           lista2.addElement(admin1);
+                           list_torneosParticipante.setModel(lista2);  
+                       }
             }
         }
         
@@ -577,18 +589,17 @@ public class WorkingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_salirAdminMouseClicked
 
     private void bt_cerrarTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cerrarTorneoMouseClicked
-        if (list_torneosAdmin.getSelectedIndex() >= 0) {
-            adminTorneo torneos = new adminTorneo(".torneos.lj");
-            torneos.cargarArchivo();
-            torneos.getTorneo().get(list_torneosAdmin.getSelectedIndex()).setAbierto(false);
 
-            DefaultListModel torneosCerrados = (DefaultListModel) list_torneosCerrados.getModel();
-            torneosCerrados.addElement(torneos.getTorneo().get(list_torneosAdmin.getSelectedIndex()));
-            list_torneosCerrados.setModel(torneosCerrados);
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecciona un torneo para finalizarlo");
-        }
+        
     }//GEN-LAST:event_bt_cerrarTorneoMouseClicked
+
+    private void bt_unirseTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_unirseTorneoMouseClicked
+       if(list_torneosAdmin.getSelectedIndex() >= 0){
+           JOptionPane.showMessageDialog(jd_admin, "Ingresado correctamente");
+       }else{
+           JOptionPane.showMessageDialog(jd_admin, evt);
+       }
+    }//GEN-LAST:event_bt_unirseTorneoMouseClicked
 
     /**
      * @param args the command line arguments
