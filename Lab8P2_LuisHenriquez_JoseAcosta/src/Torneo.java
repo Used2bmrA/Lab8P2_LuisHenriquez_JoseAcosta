@@ -15,9 +15,15 @@ public class Torneo implements Serializable {
     
     private String nombre;
     private ArrayList<Participante> participante = new ArrayList();
-    Boolean flag;
+    private Boolean flag;
+    private int rondas;
     
     private static final long SerialVersionUID=555L;
+
+    public Torneo(String nombre, int rondas) {
+        this.nombre = nombre;
+        this.rondas = rondas;
+    }
 
     public Torneo(String nombre, Boolean flag) {
         this.nombre = nombre;
@@ -46,6 +52,14 @@ public class Torneo implements Serializable {
 
     public void setFlag(Boolean flag) {
         this.flag = flag;
+    }
+
+    public int getRondas() {
+        return rondas;
+    }
+
+    public void setRondas(int rondas) {
+        this.rondas = rondas;
     }
 
     @Override
