@@ -64,7 +64,7 @@ public class Torneo implements Serializable {
 
     @Override
     public String toString() {
-        return "Torneo{" + "nombre=" + nombre + ", participante=" + participante + ", flag=" + flag + '}';
+        return ""+nombre;
     }
     
     
