@@ -1,5 +1,6 @@
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -46,9 +47,9 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_torneosAdmin = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        list_personasAdmin = new javax.swing.JList<>();
         bt_cerrarTorneo = new javax.swing.JButton();
         bt_marcarGanador = new javax.swing.JButton();
         jd_crearTorneo = new javax.swing.JDialog();
@@ -68,11 +69,11 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        list_torneosParticipante = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        list_torneosCerrados = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
+        list_torneosGanados = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -181,13 +182,13 @@ public class WorkingGUI extends javax.swing.JFrame {
         jLabel7.setText("Personas dentro del torneo");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
 
-        jList1.setModel(new DefaultListModel());
-        jScrollPane1.setViewportView(jList1);
+        list_torneosAdmin.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(list_torneosAdmin);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 130, 200));
 
-        jList2.setModel(new DefaultListModel());
-        jScrollPane2.setViewportView(jList2);
+        list_personasAdmin.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(list_personasAdmin);
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 160, 200));
 
@@ -311,18 +312,18 @@ public class WorkingGUI extends javax.swing.JFrame {
         jButton4.setText("Unirse a torneo");
         jPanel9.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
-        jList3.setModel(new DefaultListModel());
-        jScrollPane3.setViewportView(jList3);
+        list_torneosParticipante.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(list_torneosParticipante);
 
         jPanel9.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 130, 200));
 
-        jList4.setModel(new DefaultListModel());
-        jScrollPane4.setViewportView(jList4);
+        list_torneosCerrados.setModel(new DefaultListModel());
+        jScrollPane4.setViewportView(list_torneosCerrados);
 
         jPanel9.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 120, 200));
 
-        jList5.setModel(new DefaultListModel());
-        jScrollPane5.setViewportView(jList5);
+        list_torneosGanados.setModel(new DefaultListModel());
+        jScrollPane5.setViewportView(list_torneosGanados);
 
         jPanel9.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 110, 200));
 
@@ -426,22 +427,26 @@ public class WorkingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_toCrearTorneoMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        User u = new Participante(tf_usernameRegister.getText(), pf_paswoordRegister.getText());
-       administradorUser ad = new administradorUser("./admin.lj");
-       ad.cargarArchivo();
-       ad.setUser(u);
-       ad.escribirArchivo();
-       JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente");
-       tf_usernameRegister.setText("");
-       pw_password.setText("");
        
-       
-       User uu = new Admin(tf_usernameRegister.getText(), pf_passwordRegister.getText());
-       administradorUser ad = new administradorUser("./admin.lj");
-       ad.cargarArchivo();
-       ad.setUser(uu);
-       ad.escribirArchivo();
-       JOptionPane.showMessageDialog(this, "Usuario Registrado exitosamente");
+        if (rb_participante.isSelected()) {
+            User nuevoUsuario = new Participante(tf_usernameRegister.getText(), pf_passwordRegister.getText());
+            administradorUser admin = new administradorUser("./admin.lj");
+            admin.cargarArchivo();
+            admin.setUser(nuevoUsuario);
+            admin.escribirArchivo();
+            JOptionPane.showMessageDialog(jd_registro, "Participante registrado exitosamente.");
+            tf_usernameRegister.setText("");
+            pf_password.setText("");
+        } else if (rb_administrador.isSelected()) {
+            User nuevoAdministrador = new Admin(tf_usernameRegister.getText(), pf_passwordRegister.getText());
+            administradorUser admin = new administradorUser("./admin.lj");
+            admin.cargarArchivo();
+            admin.setUser(nuevoAdministrador);
+            admin.escribirArchivo();
+            JOptionPane.showMessageDialog(jd_registro, "Administrador registrado exitosamente.");
+        }else{
+            JOptionPane.showMessageDialog(jd_registro, "Elija si el usuario es participante o administrador. ");
+        }
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**
@@ -503,11 +508,6 @@ public class WorkingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JList<String> jList5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -527,6 +527,11 @@ public class WorkingGUI extends javax.swing.JFrame {
     private javax.swing.JDialog jd_crearTorneo;
     private javax.swing.JDialog jd_participante;
     private javax.swing.JDialog jd_registro;
+    private javax.swing.JList<String> list_personasAdmin;
+    private javax.swing.JList<String> list_torneosAdmin;
+    private javax.swing.JList<String> list_torneosCerrados;
+    private javax.swing.JList<String> list_torneosGanados;
+    private javax.swing.JList<String> list_torneosParticipante;
     private javax.swing.JPasswordField pf_password;
     private javax.swing.JPasswordField pf_passwordRegister;
     private javax.swing.JRadioButton rb_administrador;
