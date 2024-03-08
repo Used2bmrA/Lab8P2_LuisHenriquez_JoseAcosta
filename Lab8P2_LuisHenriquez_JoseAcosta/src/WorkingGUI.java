@@ -1,3 +1,6 @@
+
+import javax.swing.DefaultListModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -124,6 +127,11 @@ public class WorkingGUI extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Crear");
         jButton3.setBorder(null);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 60, 30));
 
         javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
@@ -156,7 +164,13 @@ public class WorkingGUI extends javax.swing.JFrame {
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 460));
 
+        bt_toCrearTorneo.setBackground(new java.awt.Color(0, 0, 255));
         bt_toCrearTorneo.setText("Crear torneo");
+        bt_toCrearTorneo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_toCrearTorneoMouseClicked(evt);
+            }
+        });
         jPanel5.add(bt_toCrearTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
@@ -350,6 +364,11 @@ public class WorkingGUI extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar");
         jButton1.setBorder(null);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 70, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
@@ -391,6 +410,39 @@ public class WorkingGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        this.setVisible(false);
+        jd_registro.pack();
+        jd_registro.setLocationRelativeTo(null);
+        jd_registro.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void bt_toCrearTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_toCrearTorneoMouseClicked
+        this.dispose();
+        jd_crearTorneo.pack();
+        jd_crearTorneo.setLocationRelativeTo(null);
+        jd_crearTorneo.setVisible(true);
+    }//GEN-LAST:event_bt_toCrearTorneoMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        User u = new Participante(tf_usernameRegister.getText(), pf_paswoordRegister.getText());
+       administradorUser ad = new administradorUser("./admin.lj");
+       ad.cargarArchivo();
+       ad.setUser(u);
+       ad.escribirArchivo();
+       JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente");
+       tf_usernameRegister.setText("");
+       pw_password.setText("");
+       
+       
+       User uu = new Admin(tf_usernameRegister.getText(), pf_passwordRegister.getText());
+       administradorUser ad = new administradorUser("./admin.lj");
+       ad.cargarArchivo();
+       ad.setUser(uu);
+       ad.escribirArchivo();
+       JOptionPane.showMessageDialog(this, "Usuario Registrado exitosamente");
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
