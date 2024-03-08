@@ -217,6 +217,11 @@ public class WorkingGUI extends javax.swing.JFrame {
         bt_cerrarTorneo.setForeground(new java.awt.Color(255, 255, 255));
         bt_cerrarTorneo.setText("Cerrar torneo");
         bt_cerrarTorneo.setBorder(null);
+        bt_cerrarTorneo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_cerrarTorneoMouseClicked(evt);
+            }
+        });
         jPanel5.add(bt_cerrarTorneo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 110, 30));
 
         bt_marcarGanador.setBackground(new java.awt.Color(255, 0, 0));
@@ -498,7 +503,8 @@ public class WorkingGUI extends javax.swing.JFrame {
 
     private void bt_crearTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearTorneoMouseClicked
        Torneo nuevoTorneo = new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue());
-       adminTorneo admin = new adminTorneo("./torneos.jl");
+       nuevoTorneo.setAbierto(true);
+       adminTorneo admin = new adminTorneo("./torneos.lj");
        admin.cargarArchivo();
        admin.getTorneo().add(nuevoTorneo);
        admin.escribirArchivo();
@@ -507,11 +513,11 @@ public class WorkingGUI extends javax.swing.JFrame {
        sp_rondas.setValue(0);
        
        DefaultListModel modelo = (DefaultListModel) list_torneosAdmin.getModel();
-       modelo.addElement(new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue()));
+       modelo.addElement(nuevoTorneo);
        list_torneosAdmin.setModel(modelo);
        
        DefaultListModel modeloParticipantes = (DefaultListModel) list_torneosParticipante.getModel();
-       modeloParticipantes.addElement(new Torneo(tf_nombreTorneo.getText(), (int) sp_rondas.getValue()));
+       modeloParticipantes.addElement(nuevoTorneo);
        list_torneosParticipante.setModel(modeloParticipantes);
        
        jd_crearTorneo.dispose();
@@ -569,6 +575,20 @@ public class WorkingGUI extends javax.swing.JFrame {
         jd_admin.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_bt_salirAdminMouseClicked
+
+    private void bt_cerrarTorneoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cerrarTorneoMouseClicked
+        if (list_torneosAdmin.getSelectedIndex() >= 0) {
+            adminTorneo torneos = new adminTorneo(".torneos.lj");
+            torneos.cargarArchivo();
+            torneos.getTorneo().get(list_torneosAdmin.getSelectedIndex()).setAbierto(false);
+
+            DefaultListModel torneosCerrados = (DefaultListModel) list_torneosCerrados.getModel();
+            torneosCerrados.addElement(torneos.getTorneo().get(list_torneosAdmin.getSelectedIndex()));
+            list_torneosCerrados.setModel(torneosCerrados);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un torneo para finalizarlo");
+        }
+    }//GEN-LAST:event_bt_cerrarTorneoMouseClicked
 
     /**
      * @param args the command line arguments

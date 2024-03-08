@@ -15,7 +15,7 @@ public class Torneo implements Serializable {
     
     private String nombre;
     private ArrayList<Participante> participante = new ArrayList();
-    private Boolean flag;
+    private Boolean abierto;
     private int rondas;
     
     private static final long SerialVersionUID=555L;
@@ -27,7 +27,7 @@ public class Torneo implements Serializable {
 
     public Torneo(String nombre, Boolean flag) {
         this.nombre = nombre;
-        this.flag = flag;
+        this.abierto = flag;
     }
 
     public String getNombre() {
@@ -46,12 +46,12 @@ public class Torneo implements Serializable {
         this.participante = participante;
     }
 
-    public Boolean getFlag() {
-        return flag;
+    public Boolean isAbierto() {
+        return abierto;
     }
 
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
+    public void setAbierto(Boolean flag) {
+        this.abierto = flag;
     }
 
     public int getRondas() {
@@ -64,7 +64,7 @@ public class Torneo implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + "Rondas: " + rondas;
+        return nombre + " (" + rondas + " rondas)";
     }
     
     
